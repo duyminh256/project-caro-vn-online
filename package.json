@@ -11,8 +11,7 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject",
-    "precommit": "NODE_ENV=production lint-staged"
+    "eject": "react-scripts eject"
   },
   "lint-staged": {
     "*.{js,jsx}": [
@@ -20,6 +19,11 @@
       "eslint src/ --fix",
       "git add"
     ]
+  },
+  "husky": {
+    "hooks": {
+      "precommit": "NODE_ENV=production lint-staged"
+    }
   },
   "eslintConfig": {
     "extends": "react-app"
