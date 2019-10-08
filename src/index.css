@@ -70,3 +70,7 @@ body {
   .square--winning {
     background-color: yellow;
   }
+  .list{
+    height: 700px;
+    overflow-y: auto;
+  }

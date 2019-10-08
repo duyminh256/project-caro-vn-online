@@ -12,7 +12,7 @@ class Board extends React.Component {
       />
     );
   }
-
+  
   renderAllSquares(){
     const {squares} = this.props;
     const matrixSize = Math.sqrt(squares.length);
