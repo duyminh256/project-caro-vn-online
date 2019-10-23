@@ -8,6 +8,7 @@ import {
   Icon,
   Button
 } from 'antd';
+import {Redirect} from 'react-router-dom'
 import { RegisterUser } from '../actions/user'
 
 
@@ -55,10 +56,16 @@ class RegistrationForm extends React.Component {
   
 
   render() {
-    const {form} = this.props
+    const {_state,form} = this.props
     const { getFieldDecorator } = form;
+    if(_state.username)
+      return(<Redirect to = '/home'/>)
+      
     return (
-      <Form onSubmit={this.handleSubmit}>
+      <Form onSubmit={this.handleSubmit} className="register-form">
+        <Form.Item className='title-register'>
+          <h1>Register</h1>
+        </Form.Item>
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
             rules: [
@@ -109,11 +116,11 @@ class RegistrationForm extends React.Component {
             </span>
           }
         >
-          {getFieldDecorator('Username', {
+          {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
           })(<Input />)}
         </Form.Item>
-        <Form.Item>
+        <Form.Item className='button-register'>
           <Button type="primary" htmlType="submit">
             Register
           </Button>

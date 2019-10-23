@@ -4,11 +4,18 @@ export const login = item => ({
     type: 'LOGIN',
     item,
   })
+export const loginFail = () => ({
+    type: 'LOGIN_FAIL',
+})
   
 export const register = item => ({
       type: 'REGISTER',
       item
   })
+export const registerFail = item => ({
+    type: 'REGISTER_FAIL',
+    item
+})
 export const logout = () => ({
     type: 'LOG OUT'
 })  
@@ -18,17 +25,16 @@ export const loginUser = (user) => {
             .then(res => {
                 dispatch(login(res.data));
             })
-            // .catch(() => dispatch(itemsHasErrored(true)));
+            .catch(() => dispatch(loginFail()));
     };
 }
 export function RegisterUser(user) {
     return (dispatch) => {
         axios.post(`https://server-caro-1612384.herokuapp.com/user/register`, user)
             .then(res => {
-                console.log(res);
-                console.log(res.data);
-                dispatch(login(true));
+                dispatch(register(res.data));
             })
+            .catch(() => dispatch(registerFail()));
     };
 
 }

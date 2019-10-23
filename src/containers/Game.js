@@ -21,7 +21,6 @@ const Game = (props) => {
       </li>
     );
   });
-
   let status;
   if (winner) {
     status = `Winner: ${winner}`;

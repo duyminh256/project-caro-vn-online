@@ -2,7 +2,8 @@ import { connect } from 'react-redux'
 import React from 'react';
 import 'antd/dist/antd.css';
 import { Form, Icon, Input, Button } from 'antd';
-import { loginUser } from '../actions/user'
+import { Link,Redirect } from 'react-router-dom';
+import { loginUser} from '../actions/user'
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -17,10 +18,17 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const {form} = this.props;
+    const {_state,form} = this.props;
+    if(_state.username)
+      return(<Redirect to = '/home'/>)
+      
     const { getFieldDecorator } = form;
+    
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form">
+      <Form onSubmit={this.handleSubmit} className="login-form login-form">
+        <Form.Item className='title-login'>
+          <h1>LOGIN</h1>
+        </Form.Item>
         <Form.Item>
           {getFieldDecorator('email', {
             rules: [{
@@ -49,7 +57,7 @@ class NormalLoginForm extends React.Component {
             />,
           )}
         </Form.Item>
-        <Form.Item>
+        <Form.Item className='button-login'>
           {/* {getFieldDecorator('remember', {
             valuePropName: 'checked',
             initialValue: true,
@@ -57,10 +65,10 @@ class NormalLoginForm extends React.Component {
           {/* <a className="login-form-forgot" href="">
             Forgot password
           </a> */}
-          <Button type="primary" htmlType="submit" className="login-form-button" to="/home">
+          <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          {/* Or <a href="">register now!</a> */}
+          &emsp;Or&emsp;<Link to="/register">Register now</Link>
         </Form.Item>
       </Form>
     );
