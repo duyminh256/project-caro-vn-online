@@ -3,7 +3,11 @@ import React from 'react';
 import 'antd/dist/antd.css';
 import { Form, Icon, Input, Button } from 'antd';
 import { Link,Redirect } from 'react-router-dom';
-import { loginUser} from '../actions/user'
+import { GoogleLogin } from "react-google-login";
+import FacebookLogin from 'react-facebook-login';
+import { loginUser,responseGoogle,responseFacebook} from '../actions/user'
+import {GOOGLE_ID,FACEBOOK_ID} from '../constains/keys'
+
 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
@@ -18,7 +22,7 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const {_state,form} = this.props;
+    const {_state,form,_responseFacebook,_responseGoogle} = this.props;
     if(_state.username)
       return(<Redirect to = '/home'/>)
       
@@ -58,17 +62,25 @@ class NormalLoginForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item className='button-login'>
-          {/* {getFieldDecorator('remember', {
-            valuePropName: 'checked',
-            initialValue: true,
-          })(<Checkbox>Remember me</Checkbox>)} */}
-          {/* <a className="login-form-forgot" href="">
-            Forgot password
-          </a> */}
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
           &emsp;Or&emsp;<Link to="/register">Register now</Link>
+        </Form.Item>
+        <Form.Item className='button-login'>
+          <FacebookLogin
+            appId={FACEBOOK_ID}
+            autoLoad= "true"
+            fields="name,email,picture"
+            callback={_responseFacebook} 
+          />
+          &emsp;&emsp;
+          <GoogleLogin
+            clientId= {GOOGLE_ID}
+            buttonText="Login"
+            onSuccess={_responseGoogle}
+            onFailure={_responseGoogle}
+          />
         </Form.Item>
       </Form>
     );
@@ -83,6 +95,8 @@ const mapStateToProps = (state) => ({
   })
 const mapDispatchToProps = (dispatch) => ({
   login: values => dispatch(loginUser(values)),
+  _responseFacebook: response => dispatch(responseFacebook(response)),
+  _responseGoogle: response => dispatch(responseGoogle(response))
 })
 
 export default connect(

@@ -47,7 +47,7 @@ body {
     width: auto;
     position: fixed;
     top: 20%;
-    left: 40%;
+    left: 30%;
     margin-top: -100px;
     margin-left: -200px;
     font-size: 20px;
@@ -74,7 +74,11 @@ body {
     height: 700px;
     overflow-y: auto;
   }
-
+  .messages{
+    height: 500px;
+    width: 400px;
+    overflow-y: auto;
+  }
   .login-form {
    
     height: 200px;
@@ -97,14 +101,14 @@ body {
     margin-left: -200px;
     font-size: 20px;
   }
-  .button-login{
-    position: fixed;
+  /* .button-login{
+   
     left: 45%;
   }
   .button-register{
-    position: fixed;
+   
     left: 52%;
-  }
+  } */
   .title-register{
     left: 37%;
   }
@@ -113,11 +117,13 @@ body {
   }
   .profile{
     height: 200px;
-    width: 500px;
+    width: 700px;
     position: fixed;
     top: 40%;
-    left: 50%;
+    left: 30%;
     margin-top: -100px;
     margin-left: -200px;
     font-size: 20px;
   }
+
+  

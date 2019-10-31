@@ -38,3 +38,12 @@ export function RegisterUser(user) {
     };
 
 }
+export const responseGoogle = response => {
+    console.log(response)
+    return ()=> login(true)
+};
+export const responseFacebook = response => {
+    console.log(response)
+    return ()=>login(true)
+  };
+  

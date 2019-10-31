@@ -4,6 +4,9 @@ import Login from '../containers/Login';
 import Register from '../containers/Register';
 import Home from '../containers/Home'
 import Game from '../containers/Game'
+import GameOnline from '../containers/GameOnline'
+import Loading from '../containers/Loading'
+
 
 function App() {  
     return (
@@ -12,6 +15,8 @@ function App() {
             <Route path='/register' component={Register}/>
             <Route path='/home' component={Home}/>
             <Route path='/game' component={Game}/>
+            <Route path='/gameonline' component={GameOnline}/>
+            <Route path='/loading' component={Loading}/>
         </Switch>
     );
   }

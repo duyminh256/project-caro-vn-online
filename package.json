@@ -3,17 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "antd": "^3.24.2",
+    "antd": "^3.24.3",
     "axios": "^0.19.0",
-    "bootstrap": "^4.3.1",
-    "react": "^16.10.1",
-    "react-bootstrap": "^1.0.0-beta.14",
-    "react-dom": "^16.10.1",
+    "react": "^16.11.0",
+    "react-dom": "^16.11.0",
+    "react-facebook-login": "^4.1.1",
+    "react-google-login": "^5.0.7",
     "react-redux": "^7.1.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "3.1.2",
     "redux": "^4.0.4",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "socket.io-client": "^2.3.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -49,15 +50,16 @@
     ]
   },
   "devDependencies": {
-    "eslint": "^6.5.1",
+    "babel-plugin-import": "^1.12.2",
+    "eslint": "^6.6.0",
     "eslint-config-airbnb": "^18.0.1",
-    "eslint-config-prettier": "^6.3.0",
+    "eslint-config-prettier": "^6.5.0",
     "eslint-plugin-import": "^2.18.2",
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-prettier": "^3.1.1",
-    "eslint-plugin-react": "^7.15.1",
-    "husky": "^3.0.8",
-    "lint-staged": "^9.4.1",
+    "eslint-plugin-react": "^7.16.0",
+    "husky": "^3.0.9",
+    "lint-staged": "^9.4.2",
     "prettier": "^1.18.2",
     "pretty-quick": "^1.11.1"
   }

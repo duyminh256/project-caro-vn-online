@@ -12,9 +12,13 @@ const Home = (props)=>{
     return (
       <div className='profile'>
         <h3>Welcome to Caro game: {_state.username}</h3>
-        <Button type="danger" onClick = {_logout}>Log Out</Button>
+        <Button type="primary"><Link to = '/game'>Profile</Link></Button>
+        &emsp;&emsp; 
+        <Button type="primary"><Link to = '/game'>Play game with Computer</Link></Button>
         &emsp;&emsp;
-        <Button type="primary"><Link to = '/game'>Play Game</Link></Button>
+        <Button type="primary"><Link to = '/loading'>Play game Online</Link></Button>
+        &emsp;&emsp;
+        <Button type="danger" onClick = {_logout}>Log Out</Button>
       </div>
     );
 }

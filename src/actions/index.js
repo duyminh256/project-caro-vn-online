@@ -1,3 +1,4 @@
+// import axios from 'axios'
 
 export const handleClick = pos => ({
   type: 'HANDLE_CLICK',
@@ -15,7 +16,3 @@ export const jumpTo = step=> ({
 export const reset = () => ({
     type: 'RESET'
 })
-
-
-
-
