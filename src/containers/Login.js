@@ -23,7 +23,7 @@ class NormalLoginForm extends React.Component {
 
   render() {
     const {_state,form,_responseFacebook,_responseGoogle} = this.props;
-    if(_state.username)
+    if(_state.token)
       return(<Redirect to = '/home'/>)
       
     const { getFieldDecorator } = form;
@@ -70,7 +70,6 @@ class NormalLoginForm extends React.Component {
         <Form.Item className='button-login'>
           <FacebookLogin
             appId={FACEBOOK_ID}
-            autoLoad= "true"
             fields="name,email,picture"
             callback={_responseFacebook} 
           />

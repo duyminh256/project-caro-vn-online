@@ -9,11 +9,11 @@ import {
   Button,
   InputNumber
 } from 'antd';
-import {Redirect} from 'react-router-dom'
-import { RegisterUser } from '../actions/user'
+import {Redirect,Link} from 'react-router-dom'
+import { updateInfo } from '../actions/user'
 
 
-class RegistrationForm extends React.Component {
+class EditForm extends React.Component {
   constructor(props) {
     super(props);
     this.state = { confirmDirty: false };
@@ -24,8 +24,8 @@ class RegistrationForm extends React.Component {
     const {form} = this.props
     form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        const {register} = this.props
-        register(values);
+        const {_updateInfo,_state} = this.props
+        _updateInfo(values,_state.token);
       }
     });
   };
@@ -54,18 +54,17 @@ class RegistrationForm extends React.Component {
     callback();
   };
 
-  
-
+ 
   render() {
     const {_state,form} = this.props
     const { getFieldDecorator } = form;
-    if(!_state.token)
+    if(!_state.allow)
       return(<Redirect to = '/'/>)
       
     return (
       <Form onSubmit={this.handleSubmit} className="register-form">
         <Form.Item className='title-register'>
-          <h1>Register</h1>
+          <h1>EDIT PROFILE</h1>
         </Form.Item>
         <Form.Item
           label={
@@ -77,8 +76,7 @@ class RegistrationForm extends React.Component {
             </span>
           }
         >
-          {getFieldDecorator('username', {
-            rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
+          {getFieldDecorator('username', {initialValue: _state.username
           })(<Input />)}
         </Form.Item>
         <Form.Item label="E-mail">
@@ -87,21 +85,14 @@ class RegistrationForm extends React.Component {
               {
                 type: 'email',
                 message: 'The input is not valid E-mail!',
-              },
-              {
-                required: true,
-                message: 'Please input your E-mail!',
-              },
+              }
             ],
+            initialValue: _state.email,
           })(<Input />)}
         </Form.Item>
         <Form.Item label="Password" hasFeedback>
           {getFieldDecorator('password', {
             rules: [
-              {
-                required: true,
-                message: 'Please input your password!',
-              },
               {
                 validator: this.validateToNextPassword,
               },
@@ -111,10 +102,6 @@ class RegistrationForm extends React.Component {
         <Form.Item label="Confirm Password" hasFeedback>
           {getFieldDecorator('confirm', {
             rules: [
-              {
-                required: true,
-                message: 'Please confirm your password!',
-              },
               {
                 validator: this.compareToFirstPassword,
               },
@@ -128,11 +115,14 @@ class RegistrationForm extends React.Component {
             </span>
           }
         >
-          {getFieldDecorator('age')(<InputNumber min={1} max={100} defaultValue={1}/>)}
+          {getFieldDecorator('age',{initialValue: _state.age})(<InputNumber min={1} max={100}/>)}
         </Form.Item>
         <Form.Item className='button-register'>
           <Button type="primary" htmlType="submit">
-            Register
+            SAVE
+          </Button>
+          <Button type="primary" htmlType="submit">
+            <Link to="/profile">Back</Link>
           </Button>
         </Form.Item>
       </Form>
@@ -140,16 +130,16 @@ class RegistrationForm extends React.Component {
   }
 }
 
-const WrappedRegistrationForm = Form.create({ name: 'register' })(RegistrationForm);
+const WrappedEditForm = Form.create({ name: 'register' })(EditForm);
 
 const mapStateToProps = (state) => ({
   _state: state.user
 })
 const mapDispatchToProps = (dispatch) => ({
-  register: values => dispatch(RegisterUser(values)),
+  _updateInfo: (values,token) => dispatch(updateInfo(values,token)),
 })
 
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)( WrappedRegistrationForm)
+)( WrappedEditForm)

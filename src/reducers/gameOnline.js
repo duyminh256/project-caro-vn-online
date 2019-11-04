@@ -99,45 +99,88 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
   const game = (state = {
     squares: Array(400).fill(null),
     history: [{pos:0,key:null}],
-    stepNumber: 0,
     xIsNext: true,
+    nextplayer: null,
     winner: null,
     winline: null,
-    isDescending: true,
+    player: null,
+    opponent: null,
+    request: null,
+    response: null,
   }, action) => {
     switch (action.type) {
-      case 'HANDLE_CLICK':
+      case 'HANDLE_CLICK_ONLINE':
         {
           const _xIsNext = state.xIsNext;
-          const _history = state.history.slice(0, state.stepNumber+1);
+          const _history = state.history;
           const current = fillSquare(state.squares.length,_history);
-          if (state.winner || current[action.pos]) {
+          if (state.winner || current[action.pos.position]) {
             return state;
           }
          const next = state.xIsNext ? "X" : "O";
-          current[action.pos] = next;
-         _history.push({pos:action.pos,key:next})
+          current[action.pos.position] = next;
+         _history.push({pos:action.pos.position,key:next})
           
-          const _winline = calculateWinner(current,action.pos,state.xIsNext);
+          const _winline = calculateWinner(current,action.pos.position,state.xIsNext);
+          const _nextplayer = state.nextplayer === state.player? state.opponent : state.player
+          const _winner = _winline?state.nextplayer:null
           return {...state,
                     squares: current,
                     history: _history,
-                    stepNumber: _history.length-1,
                     xIsNext: !_xIsNext,
-                    winner: _winline?current[action.pos]:null,
+                    nextplayer: _nextplayer,
+                    winner: _winner,
                     winline: _winline||null,  
                   };
         }
-      case 'RESET':
-          return {...state,
-                    squares: Array(400).fill(null),
-                    history: [{pos:0,key:null}],
-                    stepNumber: 0,
-                    xIsNext: true,
-                    winner: null,
-                    winline: null,
-                    isDescending: true
-                  }
+      case 'SET_UP_GAME':
+        {
+          return{...state,
+                  xIsNext: action.role.xIsNext,
+                  nextplayer: action.role.playing,
+                  player: action.role.player,
+                  opponent: action.role.opponent}
+        }
+        case 'SEND_REQUEST':
+            return {...state,request: true}
+        case 'SEND_RESPONSE':
+          {
+            if(action.res === true){
+             
+              const _xIsNext = !state.xIsNext
+              const _nextplayer = state.nextplayer === state.player? state.opponent : state.player
+              const _history = state.history.slice(0,state.history.length-1)
+              const current = fillSquare(state.squares.length,_history);
+              return {...state,
+                request: null,
+                squares: current,
+                history: _history,
+                winner: null,
+                winline: null,
+                xIsNext: _xIsNext,
+                response: "accept",
+                nextplayer: _nextplayer 
+              }
+            }
+            return {...state,
+                request: null,
+                response: "not",
+            }
+          }
+          case 'DISCONNECT_GAME':
+            return {...state,
+              squares: Array(400).fill(null),
+              history: [{pos:0,key:null}],
+              xIsNext: true,
+              nextplayer: null,
+              winner: null,
+              winline: null,
+              player: null,
+              opponent: null,
+              request: null,
+              response: null,}
+          case 'DELETE_RESPONSE':
+            return {...state,response: true}
       default:
         return state
     }
