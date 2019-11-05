@@ -45,7 +45,6 @@ export const loginUser = (user) => {
     };
 }
 export function RegisterUser(user) {
-    console.log(user)
     return (dispatch) => {
         axios.post(`${host}/user/register`, user)
             .then(res => {
@@ -55,43 +54,41 @@ export function RegisterUser(user) {
     };
 
 }
-export const responseGoogle = response => {
+export const responseGoogleToken = response => {
     const authOptions = {
         method: 'POST',
         url: `${host}/user/auth/google/token`,
-        data: response,
         headers: {
-            'Authorization': response.accessToken,
+            'Access_token': response.Zi.access_token,
             'Content-Type': 'application/json'
         },
         json: true
       };
     return (dispatch)=>{
         axios(authOptions)
-        .then(function(res){
-            console.log(res.data);
-            console.log(res.status);
+        .then( res =>{
+                dispatch(login(res.data));
         })
+        .catch(() => dispatch(loginFail()));
     }
 };
-export const responseFacebook = response => {
+export const responseFacebookToken = response => {
     const authOptions = {
         method: 'POST',
         url: `${host}/user/auth/facebook/token`,
-        data: response,
         headers: {
-            'Authorization': response.accessToken,
-            'Content-Type': 'application/x-www-form-urlencoded'
+            'Authorization': `Bearer ${response.accessToken}`,
+            'Content-Type': 'application/json'
         },
         json: true
       };
     return (dispatch)=>{
         axios(authOptions)
-            .then(function(res){
-                console.log(res.data);
-                console.log(res.status);
-          })
-    }
+        .then( res=>{
+            dispatch(login(res.data));
+        })
+        .catch(() => dispatch(loginFail()));
+        }
   };
 
 export const updateProfile = response => {
@@ -107,7 +104,7 @@ export const updateProfile = response => {
       };
     return (dispatch)=>{
         axios(authOptions)
-            .then(function(res){
+            .then( res=>{
                 if(res.data){
                     dispatch(updateUser(res.data))
                 }
@@ -128,7 +125,7 @@ export const updateProfile = response => {
       };
     return (dispatch)=>{
         axios(authOptions)
-            .then(function(res){
+            .then( res =>{
                 if(res.data){
                     dispatch(editUser(res.data))
                 }

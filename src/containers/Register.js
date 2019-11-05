@@ -59,8 +59,8 @@ class RegistrationForm extends React.Component {
   render() {
     const {_state,form} = this.props
     const { getFieldDecorator } = form;
-    if(!_state.token)
-      return(<Redirect to = '/'/>)
+    if(_state.token)
+      return(<Redirect to = '/home'/>)
       
     return (
       <Form onSubmit={this.handleSubmit} className="register-form">

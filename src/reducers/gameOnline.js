@@ -107,6 +107,8 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
     opponent: null,
     request: null,
     response: null,
+    request2: null,
+    response2: null,
   }, action) => {
     switch (action.type) {
       case 'HANDLE_CLICK_ONLINE':
@@ -143,6 +145,8 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
         }
         case 'SEND_REQUEST':
             return {...state,request: true}
+        case 'SEND_REQUEST_2':
+            return {...state,request2: true}
         case 'SEND_RESPONSE':
           {
             if(action.res === true){
@@ -167,6 +171,25 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
                 response: "not",
             }
           }
+          case 'SEND_RESPONSE_2':
+            {
+              if(action.res === true){
+                return {...state,
+                  squares: Array(400).fill(null),
+                  history: [{pos:0,key:null}],
+                  winner: null,
+                  winline: null,
+                  request: null,
+                  response: null,
+                  request2: null,
+                  response2: "accept",
+                }
+              }
+              return {...state,
+                  request: null,
+                  response2: "not",
+              }
+            }
           case 'DISCONNECT_GAME':
             return {...state,
               squares: Array(400).fill(null),
@@ -180,7 +203,9 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
               request: null,
               response: null,}
           case 'DELETE_RESPONSE':
-            return {...state,response: true}
+            return {...state,response: null}
+            case 'DELETE_RESPONSE_2':
+              return {...state,response2: null}
       default:
         return state
     }

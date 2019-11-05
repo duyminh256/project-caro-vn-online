@@ -77,7 +77,7 @@ class EditForm extends React.Component {
           }
         >
           {getFieldDecorator('username', {initialValue: _state.username
-          })(<Input />)}
+          })(<Input disabled = {_state.googleId||_state.facebookId}/>)}
         </Form.Item>
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
@@ -88,7 +88,7 @@ class EditForm extends React.Component {
               }
             ],
             initialValue: _state.email,
-          })(<Input />)}
+          })(<Input disabled = {_state.googleId||_state.facebookId} />)}
         </Form.Item>
         <Form.Item label="Password" hasFeedback>
           {getFieldDecorator('password', {

@@ -10,6 +10,8 @@ import 'antd/dist/antd.css';
     email:null,
     allow:null,
     error: null,
+    googleId: null,
+    facebookId: null,
   }, action) => {
     switch (action.type) {
       case 'LOGIN':
@@ -31,7 +33,8 @@ import 'antd/dist/antd.css';
         {
           message.success('Register success');
           return {...state,
-            registered: true,
+            username: action.item.username,
+            token: action.item.token,
           }
         }
         case 'REGISTER_FAIL':
@@ -42,7 +45,15 @@ import 'antd/dist/antd.css';
       case 'LOG_OUT':
           {
               return {...state,
+                username: null,
                 token: null,
+                url: null,
+                age: null,
+                email:null,
+                allow:null,
+                error: null,
+                googleId: null,
+                facebookId: null,
               }
           }
       case 'UPDATE_USER':
@@ -51,6 +62,8 @@ import 'antd/dist/antd.css';
                 username: action.user.username,
                 age: action.user.age,
                 email: action.user.email,
+                googleId: action.user.googleId,
+                facebookId: action.user.facebookId,
                 allow: true
         }
       }

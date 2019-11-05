@@ -5,10 +5,10 @@ import { Form, Icon, Input, Button } from 'antd';
 import { Link,Redirect } from 'react-router-dom';
 import { GoogleLogin } from "react-google-login";
 import FacebookLogin from 'react-facebook-login';
-import { loginUser,responseGoogle,responseFacebook} from '../actions/user'
+import { loginUser,responseFacebookToken,responseGoogleToken} from '../actions/user'
 import {GOOGLE_ID,FACEBOOK_ID} from '../constains/keys'
 
-
+ 
 class NormalLoginForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
@@ -22,11 +22,17 @@ class NormalLoginForm extends React.Component {
   };
 
   render() {
-    const {_state,form,_responseFacebook,_responseGoogle} = this.props;
+    const {_state,form,_responseFacebookToken,_responseGoogleToken} = this.props;
     if(_state.token)
       return(<Redirect to = '/home'/>)
       
     const { getFieldDecorator } = form;
+    const responseFacebook = (response) => {
+      _responseFacebookToken(response)
+    }
+    const responseGoogle = (response) => {
+      _responseGoogleToken(response)
+    }
     
     return (
       <Form onSubmit={this.handleSubmit} className="login-form login-form">
@@ -71,15 +77,14 @@ class NormalLoginForm extends React.Component {
           <FacebookLogin
             appId={FACEBOOK_ID}
             fields="name,email,picture"
-            callback={_responseFacebook} 
-          />
+            callback={responseFacebook} />
           &emsp;&emsp;
           <GoogleLogin
-            clientId= {GOOGLE_ID}
+            clientId={GOOGLE_ID}
             buttonText="Login"
-            onSuccess={_responseGoogle}
-            onFailure={_responseGoogle}
-          />
+            onSuccess={responseGoogle}
+            onFailure={responseGoogle}
+         />,
         </Form.Item>
       </Form>
     );
@@ -94,8 +99,8 @@ const mapStateToProps = (state) => ({
   })
 const mapDispatchToProps = (dispatch) => ({
   login: values => dispatch(loginUser(values)),
-  _responseFacebook: response => dispatch(responseFacebook(response)),
-  _responseGoogle: response => dispatch(responseGoogle(response))
+  _responseFacebookToken: response => dispatch(responseFacebookToken(response)),
+  _responseGoogleToken: response=> dispatch(responseGoogleToken(response))
 })
 
 export default connect(
