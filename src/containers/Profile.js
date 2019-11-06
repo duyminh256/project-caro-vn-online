@@ -16,21 +16,19 @@ const Profile = (props) =>{
     }
    
     return (
-        <div className="container">
-            <div className="row">
+        <div className="user-profile">
+            <div className="card-footer">
+                <Avatar className="avatar"  style={{ backgroundColor: "#000000", verticalAlign: 'middle',width:"100px", height: "100px" }} size="large" src={_stateUser.url||""}/><br/><br/>
+                <Button className="change-ava" size="large" style={{ marginLeft: 16, verticalAlign: 'middle' }}><Link to="/upload">CHANGE AVATAR</Link></Button><br/><br/>
+                <p>{_stateUser.username?`Username:${_stateUser.username}`:""}</p><br/>
+                <p>{_stateUser.email?`Email:${_stateUser.email}`:""}</p><br/>
+                <p>{_stateUser.age?`Age:${_stateUser.age}`:""}</p><br/>
                 <div>
-                    <div className="card">
-                        <div className="card-footer">
-                            <Avatar style={{ backgroundColor: "#000000", verticalAlign: 'middle',width:"100px", height: "100px" }} size="large" src={_stateUser.url||""}/>
-                            <Button size="small" style={{ marginLeft: 16, verticalAlign: 'middle' }}><Link to="/upload">CHANGE AVATAR</Link></Button>
-                            <p>{_stateUser.username?`Username:${_stateUser.username}`:""}</p>
-                            <p>{_stateUser.email?`Email:${_stateUser.email}`:""}</p>
-                            <p>{_stateUser.age?`Age:${_stateUser.age}`:""}</p>
-                            <Button><Link to="/edit">EDIT</Link></Button>
-                            <Button><Link to="/home">BACK</Link></Button> 
-                        </div>
-                    </div>
-                </div>
+                    &ensp;&ensp;&ensp;&ensp;&ensp;
+                    <Button size="large"><Link to="/edit">EDIT PROFILE</Link></Button>
+                    &ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                    <Button size="large"><Link to="/home">BACK</Link></Button>
+                </div> 
             </div>
         </div>
     );

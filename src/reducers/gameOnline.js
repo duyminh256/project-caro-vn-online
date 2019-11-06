@@ -109,6 +109,11 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
     response: null,
     request2: null,
     response2: null,
+    request3: null,
+    response3: null,
+    request4: null,
+    response4: null,
+    waiting1: false,
   }, action) => {
     switch (action.type) {
       case 'HANDLE_CLICK_ONLINE':
@@ -143,10 +148,17 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
                   player: action.role.player,
                   opponent: action.role.opponent}
         }
+        case 'WAITING':{
+          return{...state,waiting1:true}
+        }
         case 'SEND_REQUEST':
             return {...state,request: true}
         case 'SEND_REQUEST_2':
             return {...state,request2: true}
+        case 'SEND_REQUEST_3':
+            return {...state,request3: true}
+        case 'SEND_REQUEST_4':
+            return {...state,request4: true}
         case 'SEND_RESPONSE':
           {
             if(action.res === true){
@@ -163,16 +175,18 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
                 winline: null,
                 xIsNext: _xIsNext,
                 response: "accept",
-                nextplayer: _nextplayer 
+                nextplayer: _nextplayer,
+                waiting1:false,
               }
             }
             return {...state,
                 request: null,
                 response: "not",
+                waiting1:false,
             }
           }
-          case 'SEND_RESPONSE_2':
-            {
+        case 'SEND_RESPONSE_2':
+          {
               if(action.res === true){
                 return {...state,
                   squares: Array(400).fill(null),
@@ -183,12 +197,61 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
                   response: null,
                   request2: null,
                   response2: "accept",
+                  request3: null,
+                  response3: null,
+                  request4: null,
+                  response4: null,
+                  waiting1:false,
                 }
               }
               return {...state,
-                  request: null,
+                  request2: null,
                   response2: "not",
+                  waiting1:false,
               }
+          }
+        case 'SEND_RESPONSE_3':
+          {
+            if(action.res === true){
+              return {...state,
+                squares: Array(400).fill(null),
+                history: [{pos:0,key:null}],
+                winner: null,
+                winline: null,
+                request: null,
+                response: null,
+                request2: null,
+                response2: null,
+                request3: null,
+                response3: "accept",
+                request4: null,
+                response4: null,
+                waiting1:false,
+                  }
+                }
+                return {...state,
+                    request3: null,
+                    response3: "not",
+                    waiting1:false,
+                }
+          }
+          case 'SEND_RESPONSE_4':
+            {
+                return {...state,
+                    winner: state.opponent,
+                    request4: null,
+                    response4: "accept",
+                    waiting1:false,
+                    
+                }
+            }
+            case 'SEND_RESPONSE_4_1':
+            {
+                return {...state,
+                    winner: state.player,
+                    request4: null,
+                    response4: "accept",
+                }
             }
           case 'DISCONNECT_GAME':
             return {...state,
@@ -201,11 +264,23 @@ function checkLineCols(squares,pos,comp,ops,type,jump){
               player: null,
               opponent: null,
               request: null,
-              response: null,}
+              response: null,
+              request2: null,
+              response2: null,
+              request3: null,
+              response3: null,
+              request4: null,
+              response4: null,
+              waiting1:false
+            }
           case 'DELETE_RESPONSE':
             return {...state,response: null}
             case 'DELETE_RESPONSE_2':
               return {...state,response2: null}
+              case 'DELETE_RESPONSE_3':
+                return {...state,response3: null}
+                case 'DELETE_RESPONSE_4':
+                  return {...state,response4: null}
       default:
         return state
     }

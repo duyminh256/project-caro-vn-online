@@ -26,7 +26,7 @@ export const addFile = file => ({
     return (dispatch) => {
         axios.post(`${host}/upload/avatar`, formData, config)
             .then(res => {
-                dispatch(uploadFile(`http://localhost:3000/upload/${res.data}`))
+                dispatch(uploadFile(res.data))
             })
             .catch(()=>dispatch(uploadFileFail()))
     };

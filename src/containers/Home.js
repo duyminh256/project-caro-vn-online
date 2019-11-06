@@ -11,14 +11,17 @@ const Home = (props)=>{
       return(<Redirect to = '/'/>)
     return (
       <div className='profile'>
-        <h3>Welcome to Caro game: {_state.username}</h3>
-        <Button type="primary"><Link to = '/profile'>Profile</Link></Button>
-        &emsp;&emsp; 
-        <Button type="primary"><Link to = '/game'>Play game with Computer</Link></Button>
-        &emsp;&emsp;
-        <Button type="primary"><Link to = '/loading'>Play game Online</Link></Button>
-        &emsp;&emsp;
-        <Button type="danger" onClick = {_logout}>Log Out</Button>
+        <h3 className="profile-title">Welcome to Caro game: {_state.username}</h3>
+        <br/>
+        <div className="profile-button">
+          <Button size="large" type="default"><Link to = '/profile'>Profile</Link></Button>
+          &emsp;&emsp; 
+          <Button size= "large" type="primary"><Link to = '/game'>Play game with Computer</Link></Button>
+          &emsp;&emsp;
+          <Button size="large" type="primary"><Link to = '/loading'>Play game Online</Link></Button>
+          &emsp;&emsp;
+          <Button size="large" type="danger" onClick = {_logout}><a href='/'>Log Out</a></Button>
+        </div>
       </div>
     );
 }

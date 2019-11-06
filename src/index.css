@@ -47,7 +47,7 @@ body {
     width: auto;
     position: fixed;
     top: 20%;
-    left: 30%;
+    left: 20%;
     margin-top: -100px;
     margin-left: -200px;
     font-size: 20px;
@@ -55,6 +55,10 @@ body {
  
   .game-info {
     margin-left: 20px;
+  }
+  .game-history {
+    margin-right: 20px;
+    margin-top: 75px;
   }
   .status{
     margin-bottom: 30px;
@@ -79,13 +83,18 @@ body {
     width: 400px;
     overflow-y: auto;
   }
+  .history{
+    height: 560px;
+    width: 300px;
+    overflow-y: auto;
+  }
   .login-form {
    
-    height: 200px;
-    width: 500px;
+    height: 300px;
+    width: 600px;
     position: fixed;
-    top: 40%;
-    left: 50%;
+    top: 30%;
+    left: 45%;
     margin-top: -100px;
     margin-left: -200px;
     font-size: 20px;
@@ -93,22 +102,61 @@ body {
   .register-form {
    
     height: 200px;
-    width: 500px;
+    width: 700px;
     position: fixed;
-    top: 25%;
-    left: 50%;
+    top: 15%;
+    left: 45%;
     margin-top: -100px;
     margin-left: -200px;
     font-size: 20px;
   }
-  /* .button-login{
-   
+  .find {
+    height: 900px;
+    width: 900px;
+    position: fixed;
+    top: 25%;
     left: 45%;
+    margin-top: -100px;
+    margin-left: -200px;
+  }
+  .user-profile{
+    height: 300px;
+    width: 500px;
+    position: fixed;
+    top: 25%;
+    left: 45%;
+    margin-top: -100px;
+    margin-left: -200px;
+    font-size: 20px;
+  }
+  .avatar{
+    left: 40%;
+  }
+  .change-ava{
+    left:30%;
+  }
+  .change-ava{
+    left:30%;
+  }
+  .user-button{
+   
+    left: 70%;
+  }
+  .button-login-2{
+   
+    left: 15%;
+  }
+  .button-login{
+   
+    left: 35%;
+  }
+  .button-edit{
+    left:30%;
   }
   .button-register{
    
     left: 52%;
-  } */
+  }
   .title-register{
     left: 37%;
   }
@@ -120,10 +168,28 @@ body {
     width: 700px;
     position: fixed;
     top: 40%;
-    left: 30%;
+    left: 40%;
     margin-top: -100px;
     margin-left: -200px;
     font-size: 20px;
   }
+  .btn-facebook {
+	  background: #3B5998;
+	  border-radius: 0;
+    color: #fff;
+    height:60px;
+    width: 200px;
+	  border-width: 1px;
+	  border-style: none;
+    border-color: #263961;
+    box-shadow: 0px 1px #dbdada;
 
+	}
+	.btn-facebook:link, .btn-facebook:visited {
+	  color: #fff;
+	}
+	.btn-facebook:active, .btn-facebook:hover {
+	  background: #263961;
+	  color: #fff;
+	}
   

@@ -61,6 +61,7 @@ import 'antd/dist/antd.css';
         return {...state,
                 username: action.user.username,
                 age: action.user.age,
+                url: action.user.url,
                 email: action.user.email,
                 googleId: action.user.googleId,
                 facebookId: action.user.facebookId,

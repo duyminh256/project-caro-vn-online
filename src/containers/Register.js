@@ -79,7 +79,7 @@ class RegistrationForm extends React.Component {
         >
           {getFieldDecorator('username', {
             rules: [{ required: true, message: 'Please input your username!', whitespace: true }],
-          })(<Input />)}
+          })(<Input size="large" />)}
         </Form.Item>
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
@@ -93,7 +93,7 @@ class RegistrationForm extends React.Component {
                 message: 'Please input your E-mail!',
               },
             ],
-          })(<Input />)}
+          })(<Input size="large"/>)}
         </Form.Item>
         <Form.Item label="Password" hasFeedback>
           {getFieldDecorator('password', {
@@ -106,7 +106,7 @@ class RegistrationForm extends React.Component {
                 validator: this.validateToNextPassword,
               },
             ],
-          })(<Input.Password />)}
+          })(<Input.Password size="large" />)}
         </Form.Item>
         <Form.Item label="Confirm Password" hasFeedback>
           {getFieldDecorator('confirm', {
@@ -119,19 +119,13 @@ class RegistrationForm extends React.Component {
                 validator: this.compareToFirstPassword,
               },
             ],
-          })(<Input.Password onBlur={this.handleConfirmBlur} />)}
+          })(<Input.Password onBlur={this.handleConfirmBlur} size="large"/>)}
         </Form.Item>
-        <Form.Item
-          label={
-            <span>
-              Age&nbsp;
-            </span>
-          }
-        >
-          {getFieldDecorator('age')(<InputNumber min={1} max={100} defaultValue={1}/>)}
+        <Form.Item label="Age">
+          {getFieldDecorator('age')(<InputNumber min={1} max={100} size="large"/>)}
         </Form.Item>
         <Form.Item className='button-register'>
-          <Button type="primary" htmlType="submit">
+          <Button type="primary" htmlType="submit" size="large">
             Register
           </Button>
         </Form.Item>

@@ -17,9 +17,9 @@ const Game = (props) => {
       'Go to game start';
     return (
       <li key={_id}>
-        <Button type="primary" onClick= {()=>_jumpTo(move)}>
+        <Button type="default" onClick= {()=>_jumpTo(move)}>
           {move === stepNumber ? <b>{desc}</b> : desc}
-        </Button>
+        </Button><br/><br/>
       </li>
     );
   });
@@ -50,7 +50,7 @@ const Game = (props) => {
         <div>{status}</div>
         <Button type = "primary" className="button" onClick={_sortHistory}>
           Sort by: {isDescending ? "Asending":"Descending"}
-        </Button>
+        </Button><br/><br/>
         <div className="list"><ol>{isDescending ? moves : moves.reverse()}</ol></div>
       </div>
     </div>

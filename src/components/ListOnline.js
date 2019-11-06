@@ -11,7 +11,7 @@ const ListOnline = (props) =>{
                             <div className="card-body">
                                 <div className="card-title">History</div>
                                 <hr/>
-                                <div className="messages">
+                                <div className="history">
                                     {history.map((move,index) => {
                                         const _id = index
                                         const status = move.key?`Bước ${index}: ${move.key}_Row: ${parseInt((move.pos/20 + 1),10)}, Col: ${parseInt((move.pos%20 + 1),10)}`:`Start game`

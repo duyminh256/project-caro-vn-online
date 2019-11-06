@@ -1,9 +1,9 @@
 
 import React from "react";
 import {Card, CardHeader, CardBody,FormGroup, Label, Input,Form, Row, Col} from 'reactstrap';
-import {Link} from 'react-router-dom'
+import {Link,Redirect} from 'react-router-dom'
 import { connect } from 'react-redux'
-import {message} from 'antd'
+import {message,Button} from 'antd'
 import {addFile,upFile} from '../actions/upload'
 
 
@@ -11,6 +11,8 @@ import {addFile,upFile} from '../actions/upload'
 
 const Upload  =  props => {
     const {_stateUpload,_addFile,_upFile,_stateUser} = props;
+    if(!_stateUser.allow)
+      return(<Redirect to = '/'/>)
         return (
             <div className="container" style={{paddingTop: 30}}>
                 <Row>
@@ -22,9 +24,7 @@ const Upload  =  props => {
                             <CardBody>
                                 <Row>
                                     <Col sm={12}>
-                                        <Form
-                                            encType="multipart/form-data"
-                                        >
+                                        <Form encType="multipart/form-data">
                                             <FormGroup>
                                                 <Label for="avatar">Chọn Avatar</Label>
                                                 <Input
@@ -34,9 +34,8 @@ const Upload  =  props => {
                                                     }}
                                                     type="file" name="avatar" id="avatar"
                                                     placeholder="chọn file"/>
-                                            </FormGroup>
-                                            <button
-                                                className="btn btn-primary"
+                                            </FormGroup><br/>
+                                            <Button size="large" type="primary"
                                                 onClick={(evt) => {
                                                     evt.preventDefault()
                                                     if (!_stateUpload.file) {
@@ -45,13 +44,13 @@ const Upload  =  props => {
                                                         _upFile(_stateUpload.file,_stateUser.token)
                                                     }
                                                 }}
-                                                type="button"
                                             >
-                                                UPLOAD
-                                            </button>
-                                            <button className="btn btn-primary" type="button">
+                                                Upload
+                                            </Button>
+                                            &emsp;&emsp;&emsp;&emsp;
+                                            <Button size="large" type="default">
                                                 <Link to="/profile">Back</Link>
-                                            </button>
+                                            </Button>
                                         </Form>
                                     </Col>
                                 </Row>

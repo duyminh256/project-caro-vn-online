@@ -77,7 +77,7 @@ class EditForm extends React.Component {
           }
         >
           {getFieldDecorator('username', {initialValue: _state.username
-          })(<Input disabled = {_state.googleId||_state.facebookId}/>)}
+          })(<Input size="large" disabled = {_state.googleId||_state.facebookId}/>)}
         </Form.Item>
         <Form.Item label="E-mail">
           {getFieldDecorator('email', {
@@ -88,7 +88,7 @@ class EditForm extends React.Component {
               }
             ],
             initialValue: _state.email,
-          })(<Input disabled = {_state.googleId||_state.facebookId} />)}
+          })(<Input size="large" disabled = {_state.googleId||_state.facebookId} />)}
         </Form.Item>
         <Form.Item label="Password" hasFeedback>
           {getFieldDecorator('password', {
@@ -97,7 +97,7 @@ class EditForm extends React.Component {
                 validator: this.validateToNextPassword,
               },
             ],
-          })(<Input.Password />)}
+          })(<Input.Password size="large" />)}
         </Form.Item>
         <Form.Item label="Confirm Password" hasFeedback>
           {getFieldDecorator('confirm', {
@@ -115,13 +115,14 @@ class EditForm extends React.Component {
             </span>
           }
         >
-          {getFieldDecorator('age',{initialValue: _state.age})(<InputNumber min={1} max={100}/>)}
+          {getFieldDecorator('age',{initialValue: _state.age})(<InputNumber size="large" min={1} max={100}/>)}
         </Form.Item>
-        <Form.Item className='button-register'>
-          <Button type="primary" htmlType="submit">
+        <Form.Item className='button-edit'>
+          <Button size="large" type="primary" htmlType="submit">
             SAVE
           </Button>
-          <Button type="primary" htmlType="submit">
+          &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
+          <Button size="large" type="default" htmlType="submit">
             <Link to="/profile">Back</Link>
           </Button>
         </Form.Item>

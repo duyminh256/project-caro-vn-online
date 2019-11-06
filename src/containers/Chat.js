@@ -30,6 +30,7 @@ const Chat = (props) =>{
                                     placeholder="input search text"
                                     enterButton="SEND"
                                     size="large"
+                                    allowClear
                                     onSearch={value => _sendMessage({'mes':value,'to':_state.partner.socketId,"from":_stateUser.username})}
                                 />
                             </div>

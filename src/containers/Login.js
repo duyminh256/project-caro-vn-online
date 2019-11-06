@@ -35,7 +35,7 @@ class NormalLoginForm extends React.Component {
     }
     
     return (
-      <Form onSubmit={this.handleSubmit} className="login-form login-form">
+      <Form onSubmit={this.handleSubmit} className="login-form">
         <Form.Item className='title-login'>
           <h1>LOGIN</h1>
         </Form.Item>
@@ -50,6 +50,7 @@ class NormalLoginForm extends React.Component {
             }],
           })(
             <Input
+              size="large"
               type = "email"
               prefix={<Icon type="mail" style={{ color: 'rgba(0,0,0,.25)' }} />}
               placeholder="Email"
@@ -61,6 +62,7 @@ class NormalLoginForm extends React.Component {
             rules: [{ required: true, message: 'Please input your Password!' }],
           })(
             <Input
+              size="large"
               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
               type="password"
               placeholder="Password"
@@ -68,23 +70,25 @@ class NormalLoginForm extends React.Component {
           )}
         </Form.Item>
         <Form.Item className='button-login'>
-          <Button type="primary" htmlType="submit" className="login-form-button">
+          <Button size="large" type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
           &emsp;Or&emsp;<Link to="/register">Register now</Link>
         </Form.Item>
-        <Form.Item className='button-login'>
+        <Form.Item className="button-login-2">
           <FacebookLogin
             appId={FACEBOOK_ID}
             fields="name,email,picture"
-            callback={responseFacebook} />
+            callback={responseFacebook}
+            cssClass= "btn-facebook"
+            icon="fa fa-facebook fa-fw"  />
           &emsp;&emsp;
           <GoogleLogin
             clientId={GOOGLE_ID}
-            buttonText="Login"
+            buttonText="LOGIN WITH GOOGLE"
             onSuccess={responseGoogle}
             onFailure={responseGoogle}
-         />,
+         />
         </Form.Item>
       </Form>
     );
