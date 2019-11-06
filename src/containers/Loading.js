@@ -2,7 +2,7 @@ import React from "react";
 import { connect } from 'react-redux'
 import {Redirect} from 'react-router-dom'
 import {findPartner} from '../actions/socket'
-import logo from '../img/123.png'
+
 
 const Loading = (props) =>{
         const {_findPartner,_stateUser,_stateSocket} = props
@@ -14,7 +14,7 @@ const Loading = (props) =>{
         return (
           <div className="find">
             <h3 className="title-find">FINDING PARTNER ...</h3>
-            <img src={logo} alt="logo" height="600" width="600"/> 
+            <img src="https://res.cloudinary.com/dpsdkyleb/image/upload/v1573046201/Pngtree_vector_illustration_of_a_brown_4000081_o92nub.png" alt="logo" height="600" width="600"/> 
            </div>
           
         );
